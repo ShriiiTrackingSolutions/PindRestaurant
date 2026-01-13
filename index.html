@@ -21,6 +21,8 @@
             --brand-dark: #1a1a1a;  /* Deep Black */
             --brand-cream: #fdfbf7; /* Parchment White */
             --brand-green: #2d5a27; /* Veg Green */
+            --btnHoverBG: #5C2511;
+            --btnHoverColor: #FF662E;
             
             --font-head: 'Cinzel', serif;
             --font-body: 'Lato', sans-serif;
@@ -62,13 +64,28 @@
             transition: 0.3s;
             font-weight: 600;
         }
-        .btn-pind:hover { background: var(--brand-gold); color: var(--brand-red); }
+        .btn-pind:hover {background: var(--btnHoverBG); color: var(--btnHoverColor); }
         .btn-gold-outline {
             border: 2px solid var(--brand-gold); color: var(--brand-gold);
             padding: 10px 25px; text-transform: uppercase; font-weight: bold;
             background: transparent; transition: 0.3s;
         }
-        .btn-gold-outline:hover { background: var(--brand-gold); color: #000; }
+        .btn-check:checked+.btn.btn-pind, .btn.btn-pind.active, .btn.btn-pind.show, .btn.btn-pind:first-child:active, :not(.btn-check)+.btn.btn-pind:active{
+            scale: 0.98;
+            background: var(--btnHoverBG); 
+            color: var(--btnHoverColor); 
+        }
+        #whatsappForm .btn-pind{
+            border-radius: 6px;
+        }
+        #whatsappForm textarea{
+            resize: none;
+        }
+        .btn-gold-outline:hover { background: var(--brand-gold); color: #000 !important; }
+        .btn-check:checked+.btn.btn-gold-outline, .btn.btn-gold-outline.active, .btn.btn-gold-outline.show, .btn.btn-gold-outline:first-child:active, :not(.btn-check)+.btn.btn-gold-outline:active{
+            scale: 0.98;
+            background: var(--brand-gold); color: #000;
+        }
 
         /* --- NAVBAR --- */
         .navbar {
@@ -81,16 +98,20 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
         .navbar-brand { font-family: var(--font-head); font-size: 1.8rem; color: var(--brand-gold) !important; font-weight: 700; }
-        .nav-link { color: rgba(255,255,255,0.9) !important; font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; margin-left: 20px; position: relative; }
-        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--brand-gold); transition: 0.3s; }
-        .nav-link:hover::after { width: 100%; }
-        .nav-link:hover { color: var(--brand-gold) !important; }
+        .navbar-nav .nav-link { color: rgba(255,255,255,0.9) !important; font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; margin-left: 20px; position: relative; }
+        .navbar-nav .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--brand-gold); transition: 0.3s; }
+        .navbar-nav .nav-link:hover::after { width: 100%; }
+        .navbar-nav .nav-link:hover { color: var(--brand-gold) !important; }
+        .navbar-toggler{
+            background-color: var(--brand-gold);
+        }
 
         /* --- HERO --- */
         .hero-slide { height: 95vh; position: relative; background-size: cover; background-position: center; }
         .hero-overlay {
             position: absolute; inset: 0; background: rgba(0,0,0,0.4);
             display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            padding: 0 12px;
         }
         .hero-overlay h1 { font-size: 4rem; color: #fff; text-shadow: 0 5px 15px rgba(0,0,0,0.5); }
         .hero-overlay p { color: #eee; font-size: 1.4rem; margin-top: 15px; font-weight: 300; }
@@ -100,6 +121,9 @@
         .stat-num { font-size: 2.5rem; font-family: var(--font-head); font-weight: 700; color: var(--brand-gold); }
 
         /* --- MENU SECTION (Dynamic Swiper) --- */
+        .nav-pills{
+            row-gap: 12px;
+        }
         .nav-pills .nav-link {
             background: transparent; color: #555; border: 1px solid #ccc;
             border-radius: 30px; margin: 0 5px; padding: 10px 25px;
@@ -116,10 +140,15 @@
         .menu-img-box { position: relative; height: 220px; overflow: hidden; }
         .menu-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
         .menu-card:hover .menu-img-box img { transform: scale(1.1); }
+
+        .swiper-pagination-bullet-active{
+            background: var(--brand-red);
+        }
         
         .diet-icon {
             position: absolute; top: 10px; right: 10px; width: 20px; height: 20px; background: white; padding: 2px;
             border: 2px solid;
+            z-index: 2;
         }
         .diet-veg { border-color: var(--brand-green); }
         .diet-veg div { width: 100%; height: 100%; background: var(--brand-green); border-radius: 50%; }
@@ -144,14 +173,59 @@
         .footer-links a:hover { color: var(--brand-gold); padding-left: 5px; }
         .social-icons a { width: 40px; height: 40px; background: #222; display: inline-flex; align-items: center; justify-content: center; color: white; margin-right: 10px; border-radius: 50%; transition: 0.3s; text-decoration: none; }
         .social-icons a:hover { background: var(--brand-gold); color: black; }
-        .copyright { background: #000; padding: 20px 0; margin-top: 50px; font-size: 0.9rem; }
+        .copyright { background: #000; padding: 20px 0; margin-top: 50px; font-size: 0.9rem; color: #494b4dbf; }
+        .copyright a { color: #494b4dbf; text-decoration: none; transition: 0.3s; }
+        .copyright a:hover { color: var(--btnHoverColor);}
+        footer .container > .row{
+            justify-content: space-between;
+        }
 
+        
+
+
+        @media (max-width: 1199.98px) { }
+        @media (max-width: 991.98px) {  
+          .navbar-nav .nav-link {
+            margin-left: 0;
+        }
+        .navbar-collapse{
+            padding: 12px;
+        }
+        .navbar:not(.scrolled) .navbar-collapse{
+            background-color: #1a1a1acc;
+        }
+        .hero-overlay h1 { font-size: 3rem; }
+         }
         /* Mobile Fixes */
         @media(max-width: 768px) {
             .hero-overlay h1 { font-size: 2.5rem; }
             .stats-box { margin-top: 0; }
-            .section-title h2 { font-size: 2rem; }
+            .section-title h2 { font-size: 1.8rem; }
+            .section-padding {padding: 50px 0;}
+            .nav-pills .nav-link { flex: 1 1 auto;}
+            .section-title span { font-size: 1rem;}
         }
+        @media (max-width: 575.98px) { 
+          .hero-overlay h1 { font-size: 2rem; }
+          .testimonial-card{padding: 16px;}
+          .navbar-brand{
+            font-size: 22px;
+          }
+          footer .container > .row{
+            justify-content: center;
+            align-items: baseline;
+            text-align: center;
+        }
+        #about .divider {
+            justify-content: center !important;
+        }
+        #about{
+            text-align: center;
+        }
+        #about .section-title{
+            text-align: center !important;
+        }
+         }
     </style>
 </head>
 <body id="home">
@@ -161,7 +235,7 @@
             <a class="navbar-brand" href="#">
                 <i class="fa-solid fa-utensils me-2"></i>PIND BALLUCHI
             </a>
-            <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarContent">
@@ -169,8 +243,8 @@
                     <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#galleryNew">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#reservation">Contact</a></li>
                     <li class="nav-item ms-lg-3">
                         <a href="#reservation" class="btn btn-gold-outline btn-sm">Book Table</a>
                     </li>
@@ -307,7 +381,7 @@
                                 <div class="menu-card">
                                     <div class="menu-img-box">
                                         <div class="diet-icon diet-nonveg"><div></div></div>
-                                        <img src="https://images.unsplash.com/photo-1605493666578-43b67972b934?auto=format&fit=crop&q=80" alt="Fish Tikka">
+                                        <img src="https://images.unsplash.com/photo-1765265432607-cdc1060294ba?auto=format&fit=crop&q=80" alt="Fish Tikka">
                                     </div>
                                     <div class="p-4 text-center">
                                         <h4>Amritsari Fish</h4>
@@ -320,7 +394,7 @@
                                 <div class="menu-card">
                                     <div class="menu-img-box">
                                         <div class="diet-icon diet-veg"><div></div></div>
-                                        <img src="https://images.unsplash.com/photo-1567188040754-0825b4733fa2?auto=format&fit=crop&q=80" alt="Paneer Tikka">
+                                        <img src="https://images.unsplash.com/photo-1690401767645-595de0e0e5f8?auto=format&fit=crop&q=80" alt="Paneer Tikka">
                                     </div>
                                     <div class="p-4 text-center">
                                         <h4>Paneer Tikka</h4>
@@ -367,7 +441,7 @@
                                 <div class="menu-card">
                                     <div class="menu-img-box">
                                         <div class="diet-icon diet-nonveg"><div></div></div>
-                                        <img src="https://images.unsplash.com/photo-1585937421612-70a008356f36?auto=format&fit=crop&q=80" alt="Mutton Rogan Josh">
+                                        <img src="https://img.freepik.com/free-photo/delicious-goulash-stew-table_23-2149371729.jpg?auto=format&fit=max&w=800&q=80" alt="Mutton Rogan Josh">
                                     </div>
                                     <div class="p-4 text-center">
                                         <h4>Rogan Josh</h4>
@@ -481,7 +555,7 @@
         </div>
     </section>
 
-    <section id="gallery" class="section-padding">
+    <section id="galleryNew" class="section-padding">
         <div class="container">
              <div class="section-title">
                 <span>Visual Tour</span>
@@ -490,13 +564,13 @@
             </div>
             <div class="row g-3">
                 <div class="col-md-4 col-sm-6">
-                    <a href="https://images.unsplash.com/photo-1545232979-8bf68ee9b1af?auto=format&fit=crop&q=80" data-fancybox="gallery" class="d-block h-100">
-                        <img src="https://images.unsplash.com/photo-1545232979-8bf68ee9b1af?auto=format&fit=crop&q=80" class="img-fluid rounded w-100 h-100" style="object-fit:cover;">
+                    <a href="https://img.freepik.com/free-photo/closeup-shot-indian-tasty-food-called-marwari-veg-thali-wooden-table_181624-58043.jpg?auto=format&fit=max&w=1200&q=90" data-fancybox="gallery" class="d-block h-100">
+                        <img src="https://img.freepik.com/free-photo/closeup-shot-indian-tasty-food-called-marwari-veg-thali-wooden-table_181624-58043.jpg?auto=format&fit=max&w=800&q=80" class="img-fluid rounded w-100 h-100" style="object-fit:cover;">
                     </a>
                 </div>
                 <div class="col-md-4 col-sm-6">
-                    <a href="https://images.unsplash.com/photo-1550966871-3ed3c47e2ce2?auto=format&fit=crop&q=80" data-fancybox="gallery" class="d-block h-100">
-                        <img src="https://images.unsplash.com/photo-1550966871-3ed3c47e2ce2?auto=format&fit=crop&q=80" class="img-fluid rounded w-100 h-100" style="object-fit:cover;">
+                    <a href="https://img.freepik.com/free-photo/close-up-appetizing-ramadan-meal_23-2151182553.jpg?auto=format&fit=max&w=1200&q=90" data-fancybox="gallery" class="d-block h-100">
+                        <img src="https://img.freepik.com/free-photo/close-up-appetizing-ramadan-meal_23-2151182553.jpg?auto=format&fit=max&w=800&q=80" class="img-fluid rounded w-100 h-100" style="object-fit:cover;">
                     </a>
                 </div>
                 <div class="col-md-4 col-sm-6">
@@ -552,7 +626,7 @@
             <p class="mb-3 text-uppercase fw-bold text-muted small">Also Available On</p>
             <div class="d-flex justify-content-center gap-4 align-items-center grayscale-logos">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Zomato_Logo.svg" alt="Zomato" style="height: 30px; opacity: 0.6;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Swiggy_logo.svg" alt="Swiggy" style="height: 30px; opacity: 0.6;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Swiggy_Logo_2024.webp/330px-Swiggy_Logo_2024.webp.png" alt="Swiggy" style="height: 30px; opacity: 0.6;">
             </div>
         </div>
     </section>
@@ -560,7 +634,7 @@
     <section id="reservation" class="section-padding bg-dark-texture">
         <div class="container">
             <div class="row g-0 rounded overflow-hidden shadow-lg">
-                <div class="col-lg-5 p-5" style="background: rgba(168, 66, 30, 0.9);">
+                <div class="col-lg-5 p-md-5 p-sm-4 p-3" style="background: rgba(168, 66, 30, 0.9);">
                     <h3 class="text-white mb-4">Contact Information</h3>
                     <div class="d-flex mb-4">
                         <i class="fa-solid fa-location-dot text-gold fs-4 me-3 mt-1"></i>
@@ -583,7 +657,7 @@
                     </a>
                 </div>
 
-                <div class="col-lg-7 p-5 bg-white text-dark">
+                <div class="col-lg-7 p-md-5 p-sm-4 p-3 bg-white text-dark">
                     <h3 class="mb-2">Book A Table</h3>
                     <p class="text-muted mb-4">Reserve your spot instantly via WhatsApp.</p>
                     <form id="whatsappForm">
@@ -660,7 +734,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-2 col-6 mb-4 mb-lg-0">
+                <!-- <div class="col-lg-2 col-6 mb-4 mb-lg-0">
                     <div class="footer-widget">
                         <h4>Legal</h4>
                         <ul class="list-unstyled footer-links">
@@ -669,7 +743,7 @@
                             <li><a href="#">Sitemap</a></li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-lg-4">
                     <div class="footer-widget">
                         <h4>Locate Us</h4>
@@ -681,7 +755,7 @@
             </div>
             <div class="copyright text-center">
                 <div class="container">
-                    <p class="mb-0 text-muted">&copy; 2026 Pind Balluchi. All Rights Reserved. Designed with <i class="fa-solid fa-heart text-danger"></i> for Food Lovers.</p>
+                    <p class="mb-0">&copy; 2026 Pind Balluchi. All Rights Reserved. Designed with <i class="fa-solid fa-heart text-danger"></i> <a target="_blank" href="https://shriiitrackingsolution.in/">Shriii Tracking Solution</a></p>
                 </div>
             </div>
         </div>
@@ -715,7 +789,22 @@
             effect: 'fade',
             speed: 1000,
             autoplay: { delay: 5000 },
-            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }
+
+            // 1. Set default (mobile) to DISABLED
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+                enabled: false, 
+            },
+
+            breakpoints: {
+                // 2. Enable navigation for screens 768px (md) and wider
+                768: { 
+                    navigation: {
+                        enabled: true,
+                    },
+                },
+            },
         });
 
         // 5. CRITICAL: Menu Swiper Logic
@@ -732,6 +821,7 @@
                 1200: { slidesPerView: 4 }
             }
         });
+
 
         // 6. Testimonial Slider
         new Swiper('.testimonialSwiper', {
